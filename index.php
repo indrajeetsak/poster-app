@@ -72,6 +72,6 @@
     </div>
     
     <!-- Imgly BG Removal (Loaded via Module in script.js) -->
-    <script src="script.js" type="module"></script>
+    <script src="script.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

@@ -32,3 +32,11 @@ CREATE TABLE IF NOT EXISTS `poster_templates` (
 -- Insert a default admin (User: admin, Pass: admin123)
 -- Hash: $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
 INSERT IGNORE INTO `admins` (`username`, `password`) VALUES ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+
+CREATE TABLE IF NOT EXISTS `generated_posters` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `filename` VARCHAR(255) NOT NULL UNIQUE,
+    `user_name` VARCHAR(255) DEFAULT '',
+    `template_id` INT DEFAULT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
