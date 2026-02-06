@@ -108,10 +108,34 @@ window.generatePoster = async function () {
     }
 };
 
+// Helper: Get resized data URL if canvas is too large
+function getOutputDataUrl(canvas, quality = 0.92) {
+    const MAX_OUTPUT_WIDTH = 1080;
+
+    if (canvas.width > MAX_OUTPUT_WIDTH) {
+        const scale = MAX_OUTPUT_WIDTH / canvas.width;
+        const newWidth = MAX_OUTPUT_WIDTH;
+        const newHeight = Math.round(canvas.height * scale);
+
+        const tmpCanvas = document.createElement('canvas');
+        tmpCanvas.width = newWidth;
+        tmpCanvas.height = newHeight;
+        const ctx = tmpCanvas.getContext('2d');
+
+        // Use standard quality scaling
+        ctx.drawImage(canvas, 0, 0, newWidth, newHeight);
+        return tmpCanvas.toDataURL('image/jpeg', quality);
+    }
+
+    return canvas.toDataURL('image/jpeg', quality);
+}
+
 function startBackgroundUpload() {
     const canvas = document.getElementById('posterCanvas');
-    const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
     const name = document.getElementById('userName').value.trim();
+
+    // Generate optimized data URL
+    const dataUrl = getOutputDataUrl(canvas);
 
     posterUploadPromise = (async () => {
         try {
@@ -272,7 +296,7 @@ window.downloadPoster = function () {
     const canvas = document.getElementById('posterCanvas');
     const link = document.createElement('a');
     link.download = `poster_${Date.now()}.jpg`;
-    link.href = canvas.toDataURL('image/jpeg', 0.92);
+    link.href = getOutputDataUrl(canvas);
     link.click();
 };
 
