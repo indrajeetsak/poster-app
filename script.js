@@ -260,7 +260,7 @@ function drawCanvas(name, designation, userImage) {
             // 3. Draw Name
             const nameSize = parseInt(activeTemplate.name_font_size);
             const nameColor = activeTemplate.name_color;
-            ctx.font = `bold ${nameSize}px 'Inter', sans-serif`;
+            ctx.font = `bold ${nameSize}px 'Khand', sans-serif`;
             ctx.fillStyle = nameColor;
             ctx.textAlign = 'right'; // Right aligned
             ctx.textBaseline = 'top';
@@ -270,7 +270,7 @@ function drawCanvas(name, designation, userImage) {
             if (designation) {
                 const desSize = parseInt(activeTemplate.designation_font_size);
                 const desColor = activeTemplate.designation_color;
-                ctx.font = `${desSize}px 'Inter', sans-serif`;
+                ctx.font = `${desSize}px 'Khand', sans-serif`;
                 ctx.fillStyle = desColor;
                 ctx.textAlign = 'right'; // Right aligned
                 ctx.textBaseline = 'top';

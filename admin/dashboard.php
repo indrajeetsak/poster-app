@@ -4,6 +4,38 @@ require 'auth.php';
 checkLogin();
 
 $templates = $pdo->query("SELECT * FROM poster_templates ORDER BY id DESC")->fetchAll();
+
+// Analytics: Daily (Last 30 Days)
+$dailyStats = $pdo->query("
+    SELECT DATE(created_at) as date, COUNT(*) as count 
+    FROM generated_posters 
+    WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) 
+    GROUP BY DATE(created_at) 
+    ORDER BY date ASC
+")->fetchAll(PDO::FETCH_KEY_PAIR);
+
+$dates = [];
+$dailyCounts = [];
+for ($i = 29; $i >= 0; $i--) {
+    $date = date('Y-m-d', strtotime("-$i days"));
+    $dates[] = date('d M', strtotime($date));
+    $dailyCounts[] = $dailyStats[$date] ?? 0;
+}
+
+// Analytics: Monthly (Current Year)
+$monthlyStats = $pdo->query("
+    SELECT MONTH(created_at) as month, COUNT(*) as count 
+    FROM generated_posters 
+    WHERE YEAR(created_at) = YEAR(CURDATE()) 
+    GROUP BY MONTH(created_at) 
+    ORDER BY month ASC
+")->fetchAll(PDO::FETCH_KEY_PAIR);
+
+$months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+$monthlyCounts = [];
+for ($i = 1; $i <= 12; $i++) {
+    $monthlyCounts[] = $monthlyStats[$i] ?? 0;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +44,7 @@ $templates = $pdo->query("SELECT * FROM poster_templates ORDER BY id DESC")->fet
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-50 min-h-screen">
     <nav class="bg-white shadow mb-8">
@@ -22,6 +55,59 @@ $templates = $pdo->query("SELECT * FROM poster_templates ORDER BY id DESC")->fet
     </nav>
 
     <div class="container mx-auto px-6">
+        
+        <!-- Analytics Section -->
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">Analytics</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <!-- Daily Chart -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-lg font-bold mb-4 text-gray-700">Daily Creations (Last 30 Days)</h3>
+                <canvas id="dailyChart"></canvas>
+            </div>
+            <!-- Monthly Chart -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-lg font-bold mb-4 text-gray-700">Monthly Creations (This Year)</h3>
+                <canvas id="monthlyChart"></canvas>
+            </div>
+        </div>
+        
+        <script>
+            // Daily Chart
+            const ctxDaily = document.getElementById('dailyChart').getContext('2d');
+            new Chart(ctxDaily, {
+                type: 'line',
+                data: {
+                    labels: <?php echo json_encode($dates); ?>,
+                    datasets: [{
+                        label: 'Posters Created',
+                        data: <?php echo json_encode($dailyCounts); ?>,
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: { scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+            });
+
+            // Monthly Chart
+            const ctxMonthly = document.getElementById('monthlyChart').getContext('2d');
+            new Chart(ctxMonthly, {
+                type: 'bar',
+                data: {
+                    labels: <?php echo json_encode($months); ?>,
+                    datasets: [{
+                        label: 'Posters Created',
+                        data: <?php echo json_encode($monthlyCounts); ?>,
+                        backgroundColor: 'rgba(16, 185, 129, 0.6)',
+                        borderColor: 'rgb(16, 185, 129)',
+                        borderWidth: 1
+                    }]
+                },
+                options: { scales: { y: { beginAtZero: true, ticks: { precision: 0 } } } }
+            });
+        </script>
+
         <!-- Add Template Form -->
         <div class="bg-white rounded shadow p-6 mb-8">
             <h2 class="text-xl font-bold mb-4">Add New Template</h2>
