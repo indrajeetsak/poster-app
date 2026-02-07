@@ -57,7 +57,7 @@ if ($id) {
             <p class="text-red-500 mb-4">Poster not found.</p>
         <?php endif; ?>
 
-        <a href="index.php" class="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-200">
+        <a href="index.php" class="animate-bounce inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-200">
             Create Yours Now ✨
         </a>
     </div>

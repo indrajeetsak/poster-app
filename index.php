@@ -57,8 +57,8 @@
             <!-- Preview -->
             <div id="resultArea" class="hidden mt-6 text-center">
                 <h2 class="text-lg font-bold mb-2">Preview</h2>
-                <div class="relative w-full aspect-square bg-gray-200 rounded-lg overflow-hidden shadow-lg border">
-                    <canvas id="posterCanvas" class="w-full h-full object-contain"></canvas>
+                <div class="relative w-full bg-gray-200 rounded-lg overflow-hidden shadow-lg border">
+                    <canvas id="posterCanvas" class="w-full h-auto"></canvas>
                 </div>
                 
                 <div class="mt-4 grid grid-cols-2 gap-3">
