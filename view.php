@@ -48,16 +48,16 @@ if ($id) {
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
     
-    <div class="bg-white rounded-lg shadow-xl max-w-md w-full overflow-hidden text-center p-6">
-        <h1 class="text-xl font-bold mb-4 text-gray-800"><?php echo $pageTitle; ?></h1>
+    <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full overflow-hidden text-center p-6">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800"><?php echo $pageTitle; ?></h1>
         
         <?php if ($imageUrl): ?>
-            <img src="<?php echo $imageUrl; ?>" alt="Generated Poster" class="w-full h-auto max-w-full rounded-lg shadow-md mb-6">
+            <img src="<?php echo $imageUrl; ?>" alt="Generated Poster" class="w-full h-auto max-w-full rounded-lg shadow-md mb-8">
         <?php else: ?>
             <p class="text-red-500 mb-4">Poster not found.</p>
         <?php endif; ?>
 
-        <a href="index.php" class="animate-bounce inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-200">
+        <a href="index.php" class="block w-full animate-bounce bg-gradient-to-r from-blue-500 to-purple-600 text-white text-2xl font-bold py-5 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-200">
             Create Yours Now ✨
         </a>
     </div>
