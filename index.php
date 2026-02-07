@@ -15,7 +15,7 @@
     <div class="max-w-md mx-auto bg-white min-h-screen shadow-2xl relative">
         <!-- Header -->
         <header class="bg-blue-600 text-white p-4 text-center">
-            <h1 class="text-xl font-bold">Poster Generator</h1>
+            <h1 class="text-xl font-bold">शुभकामनाएं भेजिए </h1>
         </header>
 
         <div class="p-6 pb-24">
@@ -56,7 +56,7 @@
 
             <!-- Preview -->
             <div id="resultArea" class="hidden mt-6 text-center">
-                <h2 class="text-lg font-bold mb-2">Preview</h2>
+                <!-- <h2 class="text-lg font-bold mb-2">Preview</h2> -->
                 <div class="relative w-full bg-gray-200 rounded-lg overflow-hidden shadow-lg border">
                     <canvas id="posterCanvas" class="w-full h-auto max-w-full block"></canvas>
                 </div>
