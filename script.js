@@ -321,7 +321,7 @@ window.shareOnWhatsapp = async function () {
             const name = document.getElementById('userName').value.trim();
             const templateTitle = activeTemplate.template_name || 'Holi';
 
-            const message = `*${name}* ने आपको *${templateTitle}* भेज है. देखने के लिए क्लिक करें 👉 ${shareLink}`;
+            const message = `*${name}* ने आपको *${templateTitle}* भेजा है. देखने के लिए क्लिक करें 👉 ${shareLink}`;
 
             // 1. Try Native Share (Best for Mobile)
             if (navigator.share) {
