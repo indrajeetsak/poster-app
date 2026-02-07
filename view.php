@@ -54,7 +54,7 @@ if ($id) {
 <body class="min-h-screen flex flex-col items-center justify-center">
     
     <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full overflow-hidden text-center p-2">
-        <h3 class="text-xl font-bold mb-6 text-gray-800"><?php echo $pageTitle; ?></h1>
+        <h3 class="animate-pulse text-xl font-bold mb-6 text-red-800"><?php echo $pageTitle; ?></h1>
         
         <?php if ($imageUrl): ?>
             <img src="<?php echo $imageUrl; ?>" alt="Generated Poster" class="w-full h-auto max-w-full rounded-lg shadow-md mb-8">
