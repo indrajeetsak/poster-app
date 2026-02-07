@@ -52,7 +52,7 @@ if ($id) {
         <h1 class="text-xl font-bold mb-4 text-gray-800"><?php echo $pageTitle; ?></h1>
         
         <?php if ($imageUrl): ?>
-            <img src="<?php echo $imageUrl; ?>" alt="Generated Poster" class="w-full rounded-lg shadow-md mb-6">
+            <img src="<?php echo $imageUrl; ?>" alt="Generated Poster" class="w-full h-auto max-w-full rounded-lg shadow-md mb-6">
         <?php else: ?>
             <p class="text-red-500 mb-4">Poster not found.</p>
         <?php endif; ?>
