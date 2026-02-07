@@ -73,6 +73,32 @@ if ($action === 'delete') {
 
 if ($action === 'update_template') {
     $id = $_POST['id'];
+
+    // 1. Handle Image Replacement if provided
+    if (isset($_FILES['template_image']) && $_FILES['template_image']['error'] === 0) {
+        $uploadDir = '../uploads/templates/';
+        $filename = time() . '_' . basename($_FILES['template_image']['name']);
+        $targetPath = $uploadDir . $filename;
+
+        if (move_uploaded_file($_FILES['template_image']['tmp_name'], $targetPath)) {
+            // Get new dimensions
+            list($width, $height) = getimagesize($targetPath);
+
+            // Fetch old image to delete
+            $stmt = $pdo->prepare("SELECT template_path FROM poster_templates WHERE id = ?");
+            $stmt->execute([$id]);
+            $oldPath = $stmt->fetchColumn();
+            if ($oldPath && file_exists('../' . $oldPath)) {
+                @unlink('../' . $oldPath);
+            }
+
+            // Update Path & Dimensions
+            $stmt = $pdo->prepare("UPDATE poster_templates SET template_path = ?, canvas_width = ?, canvas_height = ? WHERE id = ?");
+            $stmt->execute(['uploads/templates/' . $filename, $width, $height, $id]);
+        }
+    }
+
+    // 2. Update config fields
     $stmt = $pdo->prepare("UPDATE poster_templates SET 
         template_name = ?,
         image_x = ?, image_y = ?, image_size = ?, image_width = ?, image_height = ?,

@@ -75,6 +75,18 @@ if (!$template) {
                             <label class="block text-sm font-bold mb-1">Template Title</label>
                             <input type="text" name="template_name" value="<?php echo htmlspecialchars($template['template_name']); ?>" class="w-full border p-2 rounded">
                         </div>
+
+                        <div class="mb-6 border-b pb-6">
+                             <label class="block text-sm font-bold mb-1 text-blue-600">Replace Template Image (Optional)</label>
+                             <input type="file" name="template_image" accept="image/*" class="w-full text-sm text-gray-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-full file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-blue-50 file:text-blue-700
+                                hover:file:bg-blue-100
+                             ">
+                             <p class="text-xs text-gray-500 mt-1">Upload a new image to replace the current one. Position settings will remain.</p>
+                        </div>
                         <!-- Canvas Settings (Auto-detected, Hidden) -->
                         <input type="hidden" name="canvas_width" id="canvas_width" value="<?php echo $template['canvas_width']; ?>">
                         <input type="hidden" name="canvas_height" id="canvas_height" value="<?php echo $template['canvas_height']; ?>">
