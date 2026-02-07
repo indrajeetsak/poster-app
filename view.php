@@ -58,13 +58,13 @@ if ($id) {
         <h3 class="animate-bounce text-2xl font-bold mb-6 text-red-800">👇👇👇👇👇👇👇</h1>
         
         <?php if ($imageUrl): ?>
-            <img src="<?php echo $imageUrl; ?>" alt="Generated Poster" class="w-full h-auto max-w-full rounded-lg shadow-md mb-8">
+            <img src="<?php echo $imageUrl; ?>" alt="Generated Poster" class="w-full h-auto max-w-full rounded-lg shadow-md mb-8 border-4 border-red-500">
         <?php else: ?>
             <p class="text-red-500 mb-4">Poster not found.</p>
         <?php endif; ?>
 
         <a href="index.php" class="block w-full animate-bounce bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xl font-bold py-5 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-200">
-            Create Yours Now ✨
+            अपना होली संदेश भेजें ✨
         </a>
     </div>
 
