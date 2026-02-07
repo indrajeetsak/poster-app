@@ -51,7 +51,7 @@ if ($id) {
         body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
     
     <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full overflow-hidden text-center p-6">
         <h3 class="text-xl font-bold mb-6 text-gray-800"><?php echo $pageTitle; ?></h1>
