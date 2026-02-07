@@ -45,6 +45,11 @@ if ($id) {
     <meta property="og:title" content="<?php echo $pageTitle; ?>" />
     <meta property="og:description" content="Click here to create yours now." />
     <!-- ... -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
     
